@@ -53,7 +53,7 @@ class ContactForm(forms.ModelForm):
 class RegisterForm(UserCreationForm):
     first_name = forms.CharField(required=True, min_length=3)
     last_name = forms.CharField(required=True, min_length=3)
-    email = forms.EmailField(required=True)
+    email = forms.EmailField()
 
     class Meta:
         model = User
@@ -65,7 +65,7 @@ class RegisterForm(UserCreationForm):
     def clean_email(self):
         email = self.cleaned_data.get('email')
 
-        if User.objects.filter(email=email).exists:
+        if User.objects.filter(email=email).exists():
             self.add_error('email', ValidationError('Este e-mail ja foi cadastrado.', code='invalid'))
 
         return email
