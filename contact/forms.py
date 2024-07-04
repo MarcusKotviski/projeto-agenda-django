@@ -7,10 +7,8 @@ from django.contrib.auth import password_validation
 
 
 class ContactForm(forms.ModelForm):
-
-
     picture = forms.ImageField(
-        widget=forms.FileInput(attrs={'accpet': 'image/*'})
+        widget=forms.FileInput(attrs={'accpet': 'image/*'}),required=False
     )
 
     class Meta:
